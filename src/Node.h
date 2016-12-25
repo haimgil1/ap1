@@ -35,28 +35,20 @@ public:
     // Printing the node.
     ostream &print(ostream &os) const;
 
-    // Setting obstacle.
     void setObstacle(bool isObstacle);
 
-    //Getting obstacle.
     bool getObstacle();
 
-    // Setting the point.
     void setPoint(const Point &point);
 
-    // Getting the point.
     const Point &getPoint() const;
 
-    // Overriding the == operator by node.
     bool operator==(const Node &node) const;
 
-    // Overriding the != operator by node..
     bool operator!=(const Node &node) const;
 
-    // Overriding the == operator by point..
     bool operator==(const Point p) const;
 
-    // Overriding the != operator by point..
     bool operator!=(const Point p) const;
 
 };

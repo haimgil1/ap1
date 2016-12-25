@@ -31,15 +31,14 @@ void MainFlow::startGame() {
     do {
         cin >> mission;
         switch (mission) {
-
             case 3: // Get cab parameters.
                 int cabId, cabType;
                 char manufacturer, color1;
                 cin >> cabId >> dummy >> cabType >> dummy >> manufacturer >> dummy >> color1;
                 this->cab = this->cabParser(cabId, cabType, manufacturer, color1);
                 taxiCenter.addCab(this->cab);
+                this->cab = NULL;
                 break;
-
             case 1:  // Get driver parameters.
                 int driverId, vehicleId;
                 double age, experience;
@@ -51,36 +50,30 @@ void MainFlow::startGame() {
                 this->driver->setCab(this->cab);
                 taxiCenter.addDriver(this->driver);
                 break;
-
             case 2:  // Get trip parameters.
                 int tripId, startX, startY, endX, endY, numOfPassengers;
                 double tariff;
                 cin >> tripId >> dummy >> startX >> dummy >> startY >> dummy >> endX >> dummy
                     >> endY >> dummy >> numOfPassengers >> dummy >> tariff;
 
-                // Trip can't be negative and more than map coordinate.
                 if (startX >= sizeX || startY >= sizeY || startX < 0 || startY < 0
                     || endX >= sizeX || endY >= sizeY || endX < 0 || endY < 0) {
                     throw invalid_argument("wrong trip range\n");
                 }
-
                 this->tripInformation = this->tripInfoParser(tripId, startX, startY, endX, endY,
                                                              numOfPassengers, tariff,
                                                              this->map);
                 taxiCenter.addTrip(this->tripInformation);
                 break;
-
             case 6:
                 // Start the trips.
                 taxiCenter.startDriving();
                 break;
-
             case 4:
                 // Print driver location
                 cin >> driverId;
                 taxiCenter.printDriverLocation(driverId);
                 break;
-
             case 7:
                 return;
             default:
@@ -113,6 +106,7 @@ TripInformation *MainFlow::tripInfoParser(int tripId, int startX, int startY, in
     Point startP(startX, startY);
     Point endP(endX, endY);
     return new TripInformation(tripId, startP, endP, numOfPassengers, tariff, map);
+
 }
 
 Grid *MainFlow::MapParser(int n, int m) {

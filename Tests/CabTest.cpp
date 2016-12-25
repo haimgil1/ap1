@@ -8,6 +8,7 @@
 
 // This file is for the Cab class tests.
 using namespace std;
+
 // Testing the class Cab.
 class CabTest : public ::testing::Test {
 protected:

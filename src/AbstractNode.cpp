@@ -6,8 +6,8 @@ AbstractNode::~AbstractNode() {
 
 }
 
-void AbstractNode::setPrevNode(AbstractNode *node) {
-    prev = node;
+void AbstractNode::setPrevNode(AbstractNode *newNode) {
+    prev = newNode;
 }
 
 void AbstractNode::setDistance(int newDis) {

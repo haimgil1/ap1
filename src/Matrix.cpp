@@ -82,3 +82,5 @@ void Matrix::setDistanceNeighbors() {
         }
     }
 }
+
+

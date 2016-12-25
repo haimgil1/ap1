@@ -5,6 +5,7 @@
 #include "Node.h"
 #include "Grid.h"
 #include <stdexcept>
+
 // A Matrix class that holds a matrix of nodes and the width and the height.
 class Matrix : public Grid {
 private:

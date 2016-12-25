@@ -1,3 +1,6 @@
+//
+// Created by chen on 30/11/16.
+//
 
 #ifndef TASK2BFS_PASSENGER_H
 #define TASK2BFS_PASSENGER_H

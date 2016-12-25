@@ -1,4 +1,6 @@
-
+//
+// Created by chen on 30/11/16.
+//
 
 #ifndef TASK2BFS_DRIVER_H
 #define TASK2BFS_DRIVER_H
@@ -79,20 +81,16 @@ public:
     // The function returns the num of customers.
     void removeCustomer(int num);
 
-    // Getting the cab id.
     int getCabId() const;
 
-    // Moving one step according to his track.
     void moveOneStep(stack<AbstractNode *> *track, Point p);
 
     bool operator==(const Driver &driver) const;
 
     bool operator!=(const Driver &driver) const;
 
-    // Checking if the driver is isOccupied.
     bool isOccupied() const;
 
-    // Setting isOccupied member.
     void setOccupied(bool occupied);
 };
 
