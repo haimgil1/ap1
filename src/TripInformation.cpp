@@ -107,11 +107,10 @@ Driver *TripInformation::getDriver() const {
 }
 
 void TripInformation::setDriver(Driver *driver) {
-    if(driver != NULL) {
+    if (driver != NULL) {
         this->driver = driver;
         this->driver->setOccupied(true);
-    }
-    else {
+    } else {
         this->driver = NULL;
     }
 }

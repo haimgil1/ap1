@@ -1,12 +1,7 @@
-//
-// Created by haim gil on 04/12/2016.
-//
-
 
 #include "../src/Node.h"
 #include "gtest/gtest.h"
 #include "Defines.h"
-
 
 // This file is for the Point class tests.
 using namespace std;

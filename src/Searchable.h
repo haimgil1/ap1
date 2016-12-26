@@ -1,6 +1,3 @@
-//
-// Created by chen on 08/12/16.
-//
 
 #ifndef EX2_SEARCHABLE_H
 #define EX2_SEARCHABLE_H
@@ -21,8 +18,6 @@ public:
      * Return : stack of the trail from source and destination. */
     virtual std::stack<AbstractNode *>
     BfsAlgorithm(AbstractNode *source, AbstractNode *destination)=0;
-
-
 };
 
 

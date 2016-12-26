@@ -49,10 +49,10 @@ int Udp::initialize() {
 		sin.sin_addr.s_addr = INADDR_ANY;
 		sin.sin_port = htons(this->port_number);
 		//bind
-		if (bind(this->socketDescriptor,
-				(struct sockaddr *) &sin, sizeof(sin)) < 0) {
-			return ERROR_BIND;
-		}
+//		if (bind(this->socketDescriptor,
+//				(struct sockaddr *) &sin, sizeof(sin)) < 0) {
+//			return ERROR_BIND;
+//		}
 	}
 	//return correct if there were no problems
 	return CORRECT;

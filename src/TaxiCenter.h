@@ -36,6 +36,8 @@ public:
      */
     TaxiCenter(Grid *newMap);
 
+    TaxiCenter();
+
     /**
      * Add driver to drivers list.
      * @param newDriver
@@ -129,6 +131,7 @@ public:
 
     virtual ~TaxiCenter();
 };
+
 
 
 #endif //TASK2BFS_TAXICENTER_H

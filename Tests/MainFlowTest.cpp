@@ -28,7 +28,7 @@ protected:
     virtual void SetUp() {
 
         this->map1 = new Matrix(6, 6);
-        this->taxiCenter1 = new TaxiCenter(map1);
+        this->taxiCenter1 = new TaxiCenter (map1);
         this->cab1 = factoryCab.getCab("StandardCab", 1,
                                        CarManufacturer::HONDA, Color::GREEN);
         this->driver1 = new Driver(1, 20, MaritalStatus::MARRIED, 5, 40,
@@ -46,7 +46,6 @@ protected:
     * of every test.
 	**************************************************************************/
     virtual void TearDown() {
-        delete taxiCenter1;
         delete tripInfo1;
         delete driver1;
         delete cab1;
@@ -54,6 +53,7 @@ protected:
         delete pass1;
         delete taxiCab1;
         delete map1;
+        delete taxiCenter1;
     }
 
 public:
@@ -69,6 +69,7 @@ public:
         this->cab1 = NULL;
         this->taxiCab1 = NULL;
         this->map1 = NULL;
+        this->taxiCenter1 =NULL;
     }
 
     /*************************************************************************
@@ -79,34 +80,40 @@ public:
     }
 };
 
-/*************************************************************************
-* The function checks the cab parsing function of MainFlow class.
-**************************************************************************/
-TEST_F(MainFlowTest, checkCabParsing) {
-    EXPECT_TRUE(*(this->cab1) == *(mainFlow.cabParser(1, 0, 'H', 'G')));
-}
-/*************************************************************************
-* The function checks the driver parsing function of MainFlow class.
-**************************************************************************/
-TEST_F(MainFlowTest, checkDriverParsing) {
-    //EXPECT_TRUE(*(this->driver1) == *(mainFlow.driverParser(1, 20, 'M', 5, 40)));
-}
-/*************************************************************************
-* The function checks the trip information parsing function of
- * MainFlow class.
-**************************************************************************/
-TEST_F(MainFlowTest, checkTripInfoParsing) {
-    EXPECT_TRUE(*(this->tripInfo1) == *(mainFlow.tripInfoParser(TRIP_RIDE_ID1, 0, 0, 3, 3,
-                                                                TRIP_NUM_PASS1, TRIP_TARIFF1,
-                                                                this->map1)));
-}
+ /************************************************************************
+ * The function checks the cab parsing function of MainFlow class.
+ **************************************************************************/
+ TEST_F(MainFlowTest, checkCabParsing) {
+    Cab * cab = mainFlow.cabParser(1, 0, 'H', 'G');
+     EXPECT_TRUE(*(this->cab1) == *(cab));
+    delete cab;
+ }
+ /************************************************************************
+ * The function checks the driver parsing function of MainFlow class.
+ **************************************************************************/
+ TEST_F(MainFlowTest, checkDriverParsing) {
+     //EXPECT_TRUE(*(this->driver1) == *(driver));
+ }
+ /************************************************************************
+ * The function checks the trip information parsing function of
+  * MainFlow class.
+ **************************************************************************/
+ TEST_F(MainFlowTest, checkTripInfoParsing) {
+    TripInformation * tripInformation =mainFlow.tripInfoParser(TRIP_RIDE_ID1, 0, 0, 3, 3,
+                                                               TRIP_NUM_PASS1, TRIP_TARIFF1,
+                                                               this->map1);
+     EXPECT_TRUE(*(this->tripInfo1) == *(tripInformation));
+    delete tripInformation;
+ }
 
-/*************************************************************************
-* The function checks the map parsing function of MainFlow class.
-**************************************************************************/
-TEST_F(MainFlowTest, checkMapParsing) {
-    EXPECT_TRUE(*(this->map1->getSourceElement(0, 0)) ==
-                *(mainFlow.MapParser(6, 6)->getSourceElement(0, 0)));
-    EXPECT_TRUE(*(this->map1->getDestinationElement(6, 6)) ==
-                *(mainFlow.MapParser(6, 6)->getDestinationElement(6, 6)));
-}
+/************************************************************************
+ * The function checks the map parsing function of MainFlow class.
+ **************************************************************************/
+// TEST_F(MainFlowTest, checkMapParsing) {
+//    Grid* map =mainFlow.MapParser(6, 6);
+//     EXPECT_TRUE(*(this->map1->getSourceElement(0, 0)) ==
+//                 *(map->getSourceElement(0, 0)));
+//     EXPECT_TRUE(*(this->map1->getDestinationElement(6, 6)) ==
+//                 *(map->getDestinationElement(6, 6)));
+//    delete map;
+// }

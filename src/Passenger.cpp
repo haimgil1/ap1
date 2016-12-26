@@ -1,6 +1,4 @@
-//
-// Created by chen on 30/11/16.
-//
+
 
 #include "Passenger.h"
 
