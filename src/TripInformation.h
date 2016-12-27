@@ -22,10 +22,15 @@ private:
     // Members.
     int rideId;
     int totalMetersPassed;
-    Point startPoint;
-    Point endPoint;
     int numOfPassenger;
     double tariff;
+    double time;
+public:
+    double getTime() const;
+
+private:
+    Point startPoint;
+    Point endPoint;
     vector<Passenger *> passengers;
     Driver *driver;
     stack<AbstractNode *> track;
@@ -41,8 +46,8 @@ public:
     virtual ~TripInformation();
 
     // Constructor.
-    TripInformation(int newRideId, Point newStartPoint,
-                    Point newEndPoint, int newNumOfPassenger, double newTariff, Grid *newMap);
+    TripInformation(int newRideId, Point newStartPoint, Point newEndPoint, int newNumOfPassenger,
+                    double newTariff, Grid *newMap, double newTime);
 
     // The function returns the ride id.
     int getRideId();

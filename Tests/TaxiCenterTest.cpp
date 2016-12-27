@@ -46,14 +46,14 @@ protected:
         this->cab1 = factoryCab.getCab("StandardCab", CAB_ID1, CarManufacturer::FIAT,
                                        Color::BLUE);
         this->tripInfo1 = new TripInformation(TRIP_RIDE_ID1, Point(0, 0), Point(3, 3),
-                                              TRIP_NUM_PASS1, TRIP_TARIFF1, map1);
+                                              TRIP_NUM_PASS1, TRIP_TARIFF1, map1,TIME1);
         this->tripInfo2 = new TripInformation(TRIP_RIDE_ID2, Point(0, 0), Point(2, 3),
-                                              TRIP_NUM_PASS2, TRIP_TARIFF2, map1);
+                                              TRIP_NUM_PASS2, TRIP_TARIFF2, map1,TIME1);
         this->node1 = new Node(Point(1, 2), NULL);
         this->pass1 = new Passenger(Point(0, 0), Point(1, 1));
 
         this->p1 = new Node(Point(1,1), NULL);
-        this->p2 = new Node(Point(3,3), NULL);
+        this->p2 = new Node(Point(0,1), NULL);
 
     }
     /*************************************************************************
@@ -232,11 +232,11 @@ TEST_F(TaxiCenterTest, checkStartDriving) {
     Cab* cab = factoryCab.getCab("StandardCab", CAB_ID1,
                                   CarManufacturer::FIAT, Color::GREEN);
     TripInformation* tripInformation=new TripInformation(TRIP_RIDE_ID1, Point(0, 0), Point(3, 3),
-                                                         TRIP_NUM_PASS1, TRIP_TARIFF1, map1);
+                                                         TRIP_NUM_PASS1, TRIP_TARIFF1, map1,TIME1);
     driver->setCab(cab);
     tripInformation->setDriver(driver);
     this->taxiCenter1->addTrip(tripInformation);
-    this->taxiCenter1->startDriving();
+    this->taxiCenter1->driving(0);
     ASSERT_TRUE(*(driver->getcurrentPoint()) == *p2);
     delete cab;
     delete driver;

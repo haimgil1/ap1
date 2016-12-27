@@ -8,10 +8,11 @@ TripInformation::TripInformation() {
 
 TripInformation::TripInformation(int newRideId, Point newStartPoint,
                                  Point newEndPoint, int newNumOfPassenger, double newTariff,
-                                 Grid *newMap) {
+                                 Grid *newMap, double newTime) {
     this->rideId = newRideId;
     this->driver = NULL;
     this->totalMetersPassed = 0; // Reset the total meter passed to "0".
+    this->time=newTime;
     this->startPoint = newStartPoint;
     this->endPoint = newEndPoint;
     this->numOfPassenger = newNumOfPassenger;
@@ -116,14 +117,19 @@ void TripInformation::setDriver(Driver *driver) {
 }
 
 void TripInformation::moveOneStep() {
-    this->driver->moveOneStep(&track, this->endPoint);
+    if (*(this->driver->getcurrentPoint()) != this->endPoint){
+        this->driver->moveOneStep(&track, this->endPoint);
+    }else{
+        this->driver->setOccupied(false);
+    }
+
 }
 
 void TripInformation::moveTrail() {
     while (*(this->driver->getcurrentPoint()) != this->endPoint) {
         this->moveOneStep();
     }
-    this->driver->setOccupied(false);
+    //this->driver->setOccupied(false);
 
 }
 
@@ -142,4 +148,8 @@ bool TripInformation::operator==(const TripInformation &trip) const {
 
 bool TripInformation::operator!=(const TripInformation &trip) const {
     return !(trip == *this);
+}
+
+double TripInformation::getTime() const {
+    return time;
 }

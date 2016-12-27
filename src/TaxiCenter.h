@@ -127,7 +127,7 @@ public:
     /**
      * Start the trips.
      */
-    void startDriving();
+    void driving(double time);
 
     virtual ~TaxiCenter();
 };

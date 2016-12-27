@@ -7,6 +7,7 @@ MainFlow::MainFlow() {
     this->driver = NULL;
     this->tripInformation = NULL;
     this->map=NULL;
+    this->time = 0;
 }
 
 MainFlow::~MainFlow() {
@@ -54,9 +55,9 @@ void MainFlow::startGame() {
 
             case 2:  // Get trip parameters.
                 int tripId, startX, startY, endX, endY, numOfPassengers;
-                double tariff;
+                double tariff,time;
                 cin >> tripId >> dummy >> startX >> dummy >> startY >> dummy >> endX >> dummy
-                    >> endY >> dummy >> numOfPassengers >> dummy >> tariff;
+                    >> endY >> dummy >> numOfPassengers >> dummy >> tariff>> dummy >> time;
 
                 // Trip can't be negative and more than map coordinate.
                 if (startX >= sizeX || startY >= sizeY || startX < 0 || startY < 0
@@ -66,13 +67,14 @@ void MainFlow::startGame() {
 
                 this->tripInformation = this->tripInfoParser(tripId, startX, startY, endX, endY,
                                                              numOfPassengers, tariff,
-                                                             this->map);
+                                                             this->map,time);
                 taxiCenter.addTrip(this->tripInformation);
                 break;
 
-            case 6:
+            case 9:
                 // Start the trips.
-                taxiCenter.startDriving();
+                this->time++;
+                taxiCenter.driving(this->time);
                 break;
 
             case 4:
@@ -109,10 +111,10 @@ Driver *MainFlow::driverParser(int driverId, double age, char status, double exp
 
 TripInformation *MainFlow::tripInfoParser(int tripId, int startX, int startY, int endX, int endY,
                                           int numOfPassengers, double tariff,
-                                          Grid *map) {
+                                          Grid *map,double time) {
     Point startP(startX, startY);
     Point endP(endX, endY);
-    return new TripInformation(tripId, startP, endP, numOfPassengers, tariff, map);
+    return new TripInformation(tripId, startP, endP, numOfPassengers, tariff, map, time);
 }
 
 Grid *MainFlow::MapParser(int n, int m) {

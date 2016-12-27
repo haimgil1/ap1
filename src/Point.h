@@ -3,14 +3,37 @@
 
 #include <ostream>
 #include <stdexcept>
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/tokenizer.hpp>
+#include <boost/algorithm/string/predicate.hpp>
+#include <boost/lexical_cast.hpp>
+#include <boost/assign/list_of.hpp>
+#include <boost/algorithm/string.hpp>
+#include <boost/iostreams/device/back_inserter.hpp>
+#include <boost/iostreams/stream.hpp>
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/archive/binary_iarchive.hpp>
+#include <boost/serialization/vector.hpp>
+
 // A Point class contains a x coordinate and y coordinate.
 using namespace std;
+using namespace boost::archive;
+using namespace boost::serialization;
 
+//std::stringstream ss;
 class Point {
+    friend class access;
+
+    template<class Archive>
+    void serialize(Archive &ar, const unsigned int version)
+    {
+        ar & x;
+        ar & y;
+    }
 private:
     // Members.
     int x, y;
-
     void validate();
 
 public:

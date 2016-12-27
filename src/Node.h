@@ -9,10 +9,20 @@ using namespace std;
 
 // Class: Node extends the AbstractNode and holds a point.
 class Node : public AbstractNode {
+    friend class access;
+
+    template<class Archive>
+    void serialize(Archive &ar, const unsigned int version)
+    {
+        ar & point;
+        ar & obstacle;
+    }
+
 private:
     // Members.
     Point point;
     bool obstacle;
+
 public:
     // A constructor.
     Node();

@@ -14,6 +14,11 @@
 /* class: Driver.
  * The class has derails on driver and has some functions. */
 class Driver {
+    template<class Archive>
+    void serialize(Archive &ar, const unsigned int version)
+    {
+        ar & id;
+    }
 private:
     // Members.
     int id;
@@ -26,7 +31,6 @@ private:
     AbstractNode *currentPoint;
     Cab *cab;
     bool occupied;
-
     void validate();
 
 public:

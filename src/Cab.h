@@ -16,6 +16,16 @@ using namespace std;
 /* Class: Cab.
  * The class contains detail on cab and some functions on cab.*/
 class Cab {
+    friend class access;
+
+    template<class Archive>
+    void serialize(Archive &ar, const unsigned int version)
+    {
+        ar & cabId;
+        ar & klmPassed;
+        ar & manufacturer;
+        ar & color;
+    }
 protected:
     // Members.
     int cabId;

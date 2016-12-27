@@ -48,7 +48,7 @@ Point Point::operator+(const Point &p1) const {
     return Point((x + p1.x) + (y + p1.y));
 }
 
-ostream &operator<<(std::ostream &os, const Point &p) {
+ostream &operator<<(ostream &os, const Point &p) {
     return os << "(" << p.x << "," << p.y << ")" << endl;
 }
 

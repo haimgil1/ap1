@@ -98,7 +98,7 @@ Driver *TaxiCenter::findDriverById(int driverId) {
     return NULL;
 }
 
-void TaxiCenter::startDriving() {
+void TaxiCenter::driving(double time) {
 
     // Assigning driver to a trip.
     for (int i = 0; i < (int) this->trips.size(); i++) {
@@ -110,12 +110,15 @@ void TaxiCenter::startDriving() {
 
     // Starting the track and remove from list.
     for (int i = 0; i < (int) this->trips.size(); i++) {
-        if (this->trips[i]->getDriver() != NULL) {
-            this->trips[i]->moveTrail();
-            TripInformation *trip = this->trips[i];
-            this->removeTrip(this->trips[i]);
-            delete trip;
-            i--;
+        if (this->trips[i]->getDriver() != NULL && this->trips[i]->getTime() >= time) {
+            this->trips[i]->moveOneStep();
+            if (!this->trips[i]->getDriver()->isOccupied()){
+                TripInformation *trip = this->trips[i];
+                this->removeTrip(this->trips[i]);
+                delete trip;
+                i--;
+            }
+
         }
     }
 

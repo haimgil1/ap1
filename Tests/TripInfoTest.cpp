@@ -17,6 +17,7 @@ protected:
     FactoryCab factoryCab;
     TripInformation *tripInformation;
     int rideId;
+    int time;
     Driver *driver1, *driver2;
     Point startPoint;
     Point endPoint;
@@ -42,7 +43,7 @@ protected:
         this->driver2 = new Driver(DRIVER_ID2, DRIVER_AGE2, MaritalStatus::WIDOWED, DRIVER_EXP2,
                                    CAB_ID2,map2->getSourceElement(0,0));
         this->tripInformation = new TripInformation(rideId, startPoint, endPoint,
-                                                    numOfPassenger, tariff ,map1);
+                                                    numOfPassenger, tariff ,map1,time);
         this->cab1 = factoryCab.getCab("StandardCab", CAB_ID1, manufacturer1, color1);
         this->cab2 = factoryCab.getCab("LuxuryCab", CAB_ID1, manufacturer1, color1);
         this->passenger1 = new Passenger(Point(3, 2), Point());
@@ -86,6 +87,7 @@ public:
         this->rideId = TRIP_RIDE_ID1;
         this->numOfPassenger = NUM_OF_PASSENGERS;
         this->tariff = TARIFF;
+        this->time=TIME1;
     }
     /*************************************************************************
     * Destructor.
@@ -160,9 +162,9 @@ TEST_F(TripInfoTest, CheckDeletePassenger) {
 TEST_F(TripInfoTest, CheckTripValidate) {
     try {
         TripInformation tripInformation5(rideId, startPoint, endPoint,
-                                         6, 2,map1);
+                                         6, 2,map1,time);
         TripInformation tripInformation4(rideId, startPoint, endPoint,
-                                         2, -2.3,map1);
+                                         2, -2.3,map1,time);
     } catch (std::invalid_argument &err) {
         ASSERT_STREQ(err.what(), "tariff can't be negative and can't get more than 5 passenger");
     }

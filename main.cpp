@@ -9,7 +9,7 @@ using namespace std;
 int main(int argc, char *argv[]) {
     MainFlow mainFlow;
     try {
-        //mainFlow.startGame();
+        mainFlow.startGame();
     } catch (std::invalid_argument &err){
         cout << err.what();
     }

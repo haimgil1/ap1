@@ -36,7 +36,7 @@ protected:
         this->taxiCab1 = factoryCab.getCab("LuxuryCab", CAB_ID1, CarManufacturer::FIAT,
                                            Color::BLUE);
         this->tripInfo1 = new TripInformation(TRIP_RIDE_ID1, Point(0, 0), Point(3, 3),
-                                              TRIP_NUM_PASS1, TRIP_TARIFF1, map1);
+                                              TRIP_NUM_PASS1, TRIP_TARIFF1, map1,TIME1);
         node1 = new Node(Point(1, 2), NULL);
         pass1 = new Passenger(Point(0, 0), Point(1, 1));
     }
@@ -101,7 +101,7 @@ public:
  TEST_F(MainFlowTest, checkTripInfoParsing) {
     TripInformation * tripInformation =mainFlow.tripInfoParser(TRIP_RIDE_ID1, 0, 0, 3, 3,
                                                                TRIP_NUM_PASS1, TRIP_TARIFF1,
-                                                               this->map1);
+                                                               this->map1,TIME1);
      EXPECT_TRUE(*(this->tripInfo1) == *(tripInformation));
     delete tripInformation;
  }

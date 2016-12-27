@@ -12,6 +12,16 @@ using namespace std;
  * is the abstract class of node with common functions of
  * different type of nodes.*/
 class AbstractNode {
+    friend class access;
+
+    template<class Archive>
+    void serialize(Archive &ar, const unsigned int version)
+    {
+        ar & prev;
+        ar & distance;
+        ar & numOfNeighbors;
+        ar & vectorNeighbors;
+    }
 protected:
     // Members.
     AbstractNode *prev;

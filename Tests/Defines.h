@@ -67,5 +67,7 @@
 #define MATRIX_M2 7
 #define MATRIX_N3 6
 #define MATRIX_M3 6
+
+#define TIME1 5
 #endif //TASK2BFS_DEFINES_H
 
