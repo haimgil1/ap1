@@ -26,7 +26,7 @@ void Driver::validate() {
     }
 }
 
-int Driver::getId() {
+int Driver::getId() const {
     return this->id;
 }
 
@@ -112,6 +112,8 @@ void Driver::setOccupied(bool occupied) {
     this->occupied = occupied;
 }
 
-
+ostream &operator<<(ostream &os, const Driver &driver) {
+    return os<<driver.getId();
+}
 
 

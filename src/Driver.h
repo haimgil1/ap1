@@ -14,10 +14,20 @@
 /* class: Driver.
  * The class has derails on driver and has some functions. */
 class Driver {
+    friend class access;
     template<class Archive>
     void serialize(Archive &ar, const unsigned int version)
     {
         ar & id;
+        ar & age;
+        ar & materialStatus;
+        ar & experience;
+        ar & satisfaction;
+        ar & numOfCustomers;
+        ar & cabId;
+        ar & currentPoint;
+        ar & cab;
+        ar & occupied;
     }
 private:
     // Members.
@@ -42,7 +52,7 @@ public:
     ~Driver();
 
     // The function returns the id of the driver.
-    int getId();
+    int getId() const;
 
     // The function returns the age of the driver.
     double getAge();
@@ -92,6 +102,9 @@ public:
     bool operator==(const Driver &driver) const;
 
     bool operator!=(const Driver &driver) const;
+
+    friend ostream &operator<<(std::ostream &os, const Driver &driver);
+
 
     // Checking if the driver is isOccupied.
     bool isOccupied() const;

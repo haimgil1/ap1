@@ -24,6 +24,15 @@ add_executable(EX2 ${SOURCE_FILES} Tests/CabTest.cpp Tests/CabTest.cpp src/Drive
         Tests/NodeTest.cpp src/TaxiCenter.cpp src/TaxiCenter.h Tests/PointTest.cpp src/MainFlow.cpp
         src/MainFlow.h src/Grid.cpp Tests/MainFlowTest.cpp src/Udp.h src/Udp.cpp src/Socket.cpp
         src/Socket.h)
+
+set(BOOST_ROOT CACHE PATH "/usr/include/boost/")
+find_package(Boost 1.57.0 COMPONENTS serialization system)
+include_directories(${Boost_INCLUDE_DIR})
+
+#add_executable(main_test main.cpp)
+
+target_link_libraries(EX2 ${Boost_LIBRARIES})
+
 target_link_libraries(EX2 gtest gtest_main)
 
 
